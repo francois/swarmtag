@@ -60,4 +60,6 @@ Swarmtag::Application.routes.draw do
     get :trending
   end
 
+  resource :twitter, :only => :show
+
 end
