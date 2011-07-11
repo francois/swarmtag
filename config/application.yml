@@ -1,0 +1,4 @@
+development:
+  host: localhost
+  foursquare_client_id: 2SC4HAPJWUVOR3QLBIMVKIQ3IPOM5JSPGGSIMTRGS21AZXSP
+  foursquare_client_secret: GMYTVHCUWLVE3W3CHIFGU5PQPHN3KSW0E52NVDTO1J0UFKSW
