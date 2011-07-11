@@ -31,3 +31,8 @@ gem 'ruby-debug'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+gem "twitter"
+gem "heroku"
+gem "foreman"
+
