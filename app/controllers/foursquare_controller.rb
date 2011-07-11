@@ -4,6 +4,7 @@ class FoursquareController < ApplicationController
     begin
       @venues = Skittles.trending(params[:ll], :limit => 10)
     rescue Skittles::Error => e
+      Rails.logger.error e
       @venues = []
     end
 
