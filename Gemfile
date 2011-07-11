@@ -36,3 +36,4 @@ gem "twitter"
 gem "heroku"
 gem "foreman"
 
+gem "geocoder"
