@@ -7,7 +7,10 @@ class FoursquareController < ApplicationController
       @venues = []
     end
 
-    render :json => @venues
+    respond_to do |format|
+      format.html
+      format.json { render :json => @venues.to_json }
+    end
   end
 
 end
