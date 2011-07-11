@@ -1,0 +1,86 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/> 
+<title>Google Maps JavaScript API v3 Example: Marker Simple</title> 
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" /> 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript"> 
+  var theMap;
+  function initialize(lat, lng) {
+    var myLatlng = new google.maps.LatLng(lat, lng);
+    var myOptions = {
+      zoom: 14,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+
+    theMap = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng, 
+        map: theMap,
+        title:"Hello World!"
+    });
+  }
+
+  function success(position) {
+    var url = document.location.href.replace(/\/map.*/, "/twitter?ll=" + position.coords.latitude + "," + position.coords.longitude);
+    console.log("pinging URL %o", url);
+
+    jQuery.ajax(url, {
+      dataType: "json",
+      success: function(data, textStatus) {
+        console.log("twitter: %o", data);
+        initialize(position.coords.latitude, position.coords.longitude);
+      }
+    });
+
+    url = url.replace("twitter", "foursquare/trending");
+    console.log("pinging URL %o", url);
+    jQuery.ajax(url, {
+      dataType: "json",
+      success: function(data, textStatus) {
+        addFoursquareMarkers(data);
+      }
+    });
+  }
+
+  function addFoursquareMarkers(venues) {
+    console.log("checking to addFoursquareMarkers");
+    if (!theMap) setTimeout(addFoursquareMarkers, 150);
+    console.log("ready to addFoursquareMarkers");
+    console.log(venues);
+    for(var i = 0; i < venues.length; i++) {
+      var venue = venues[i];
+      var marker = new google.maps.Marker({
+          position: new google.maps.LatLng( venue.location.lat, venue.location.lng ),
+          map: theMap,
+          title: venue.name
+      });
+    }
+  }
+
+  function setUp() {
+    var m = document.location.search.match(/[&?]ll=([-+]?\d+\.\d+),([-+]?\d+\.\d+)/);
+    if (m) {
+      console.log("using URL provided location");
+      success({coords:{latitude:parseFloat(m[1]), longitude:parseFloat(m[2])}});
+    } else {
+      console.log("geolocalizing");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, function() {
+          console.log(arguments);
+        });
+      } else {
+        console.log("not supported");
+      }
+    }
+  }
+</script> 
+</head> 
+<body onload="setUp()">
+  <div id="map_canvas"></div> 
+</body> 
+</html> 
