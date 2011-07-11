@@ -2,3 +2,8 @@ development:
   host: localhost
   foursquare_client_id: 2SC4HAPJWUVOR3QLBIMVKIQ3IPOM5JSPGGSIMTRGS21AZXSP
   foursquare_client_secret: GMYTVHCUWLVE3W3CHIFGU5PQPHN3KSW0E52NVDTO1J0UFKSW
+
+production:
+  host: morning-wind-449.heroku.com
+  foursquare_client_id: JRCOFTA1PTL53DFWHWMJRUWQFLR5PR3IOR0PXGDMNOG54EIQ
+  foursquare_client_secret: 51PP4YNIAUUTZ2OVSGUUOWOPDBMQJVUDZXJ31BO55QSRIIN4
