@@ -44,6 +44,7 @@ GEM
     foreman (0.19.0)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
+    geocoder (1.0.2)
     hashie (1.0.0)
     heroku (2.3.6)
       launchy (>= 0.3.2)
@@ -122,6 +123,7 @@ PLATFORMS
 
 DEPENDENCIES
   foreman
+  geocoder
   heroku
   rails (= 3.0.7)
   ruby-debug
