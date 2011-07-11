@@ -1,6 +1,6 @@
 <table width="100%" border="0" align="left" cellpadding="9" cellspacing="0">
   <tr valign="top">
-	  <td colspan="3"><h2><%= venue.name -%></h2></td>
+	  <td colspan="3"><h2><%= link_to(venue.name, "http://foursquare.com/venue/#{venue.id}") -%></h2></td>
   </tr>
 	<tr valign="top">
 	  <td width="305"><img src="images/map.png"></td>
